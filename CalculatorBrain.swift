@@ -25,7 +25,7 @@ struct CalculatorBrain {
     
     private var accumulator: Double?
     
-    
+    //using enum to define a type with associated value
     private enum Operation {
         case constant(Double)
         case unaryOperation((Double) -> Double)
@@ -33,6 +33,7 @@ struct CalculatorBrain {
         case equals
     }
     
+    //variable operations -> dictionary type with Key: String type and value: Operation type
     private var operations:Dictionary<String,Operation> = [
         "π" : Operation.constant(Double.pi),
         "e" : Operation.constant(M_E),
@@ -71,6 +72,7 @@ struct CalculatorBrain {
         }
     }
     
+    //Calculate result after user press "=" button
     private mutating func performPendingBinaryOperation() {
         if pendingBinaryOperation != nil && accumulator != nil {
             accumulator = pendingBinaryOperation!.perform(with: accumulator!)
@@ -80,6 +82,7 @@ struct CalculatorBrain {
     
     private var pendingBinaryOperation: PendingBinaryOperation?
     
+    //struct that stores temp value before user press "=" button
     struct PendingBinaryOperation {
         let function: (Double,Double) -> Double
         let firstOperand: Double
@@ -88,7 +91,7 @@ struct CalculatorBrain {
             return function(firstOperand,secondOperand)
         }
     }
-    
+      
     mutating func setOperand(_ operand :Double) {
         accumulator = operand
         
