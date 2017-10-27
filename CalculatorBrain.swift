@@ -43,6 +43,17 @@ struct CalculatorBrain {
         "×" : Operation.binaryOperation({$0 * $1}),
         "÷" : Operation.binaryOperation({$0 / $1}),
         "+" : Operation.binaryOperation({$0 + $1}),
+      
+        //Normal Clousure Expression Syntax
+      //"−" : Operation.binaryOperation({(op1:Double,op2:Dboule)->Double in return op1-op2})
+      
+        //Inferring Type From Context 
+      //"−" : Operation.binaryOperation({op1,op2 in return op1-op2})
+        
+        //Implicit Returns from Single-Expression Closures
+      //"−" : Operation.binaryOperation({op1,op2 in op1-op2})
+        
+        //Shorthand Argument
         "−" : Operation.binaryOperation({$0 - $1}),
         "=" : Operation.equals
     ]
