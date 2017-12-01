@@ -34,9 +34,13 @@ class ViewController: UIViewController {
     
     //Computed Property 
     var displayValue: Double {
+        //Call while returing displayValue
         get {
             return Double(display.text!)!
         }
+        //Call while setting a displayValue
+        //if setter does not define a name for the new value
+        //to be set, then "newValue" is used.
         set {
             display.text = String(newValue)
         }
