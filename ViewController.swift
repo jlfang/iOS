@@ -10,16 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //Label 
     @IBOutlet weak var display: UILabel!
     
+    //Determine whether user is in the middle of typing
     var userIsInTheMiddleOfTyping = false
     
+    //Button Action for NUMBERS
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
+        //if user is in the middle of typing, then add number/operator after the previous text
         if userIsInTheMiddleOfTyping {
             let textCurrentInDisplay = display.text!
             display.text = textCurrentInDisplay + digit
         }
+        //if this is the first type, then change the text to the input one
         else {
             display.text = digit
             userIsInTheMiddleOfTyping = true
@@ -27,6 +32,7 @@ class ViewController: UIViewController {
         
     }
     
+    //Computed Property 
     var displayValue: Double {
         get {
             return Double(display.text!)!
@@ -36,9 +42,10 @@ class ViewController: UIViewController {
         }
     }
     
-    //load Model
+    //load MODEL: CalculatorBrain
     private var brain = CalculatorBrain()
     
+    //Button Action for: OPERATORS
     @IBAction func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping {
             brain.setOperand(displayValue)
